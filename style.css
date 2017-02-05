@@ -113,14 +113,10 @@ table {
 	display: block;
 }
 
-.button {
-	cursor: pointer;
-	font-weight: bold;
-	margin: 12px 0;
-}
 
 #etank_container {
-	display: inline-block;
+	display: block;
+	margin-bottom: 20px;
 	font-size: 0;
 }
 

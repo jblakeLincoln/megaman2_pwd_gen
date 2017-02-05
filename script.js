@@ -52,6 +52,28 @@ var Mega = {
 			img.src = "images/" + name + ".png";
 		else
 			img.src = "images/" + name + "_defeated.png";
+
+		this.set_result();
+	},
+
+	populate_results_table : function() {
+		var table = document.getElementById("results"),
+			cell,
+			td,
+			img,
+			i;
+
+		for(i = 0; i < 5; ++i) {
+			cell = table.appendChild(document.createElement("tr"));
+			for(j = 0; j < 5; ++j) {
+				td = document.createElement("td");
+				img = document.createElement("img");
+
+				img.src = "images/selector.png";
+				td.appendChild(img);
+				cell.appendChild(td);
+			}
+		}
 	},
 
 	set_result : function() {
@@ -59,7 +81,8 @@ var Mega = {
 			boss,
 			table = document.getElementById("results"),
 			cells = table.getElementsByTagName("td"),
-			temp_cell,
+			cell,
+			img,
 			i,
 			j;
 
@@ -76,28 +99,19 @@ var Mega = {
 
 		if(cells.length === 0)
 		{
-			for(i = 0; i < 5; ++i) {
-				temp_cell = table.appendChild(document.createElement("tr"));
-				for(j = 0; j < 5; ++j) {
-					temp_cell.appendChild(document.createElement("td"));
-				}
-			}
-
+			this.populate_results_table();
 			cells = table.getElementsByTagName("td");
 		}
 
 		for(i = 0; i < 5 ; ++i) {
 			for(j = 0; j < 5; ++j) {
-				var cell = cells[i * 5 + j];
-				var img = cells[i * 5 + j].getElementsByTagName("img")[0];
+				cell = cells[i * 5 + j];
+				img = cells[i * 5 + j].getElementsByTagName("img")[0];
 
-				if(this.result[i][j] === true) {
-					if(img === undefined)
-						img = cell.appendChild(document.createElement("img"));
-					img.src = "images/selector.png";
-				}
+				if(this.result[i][j] === true)
+					img.style.visibility = "visible";
 				else if(img !== undefined)
-						img.remove();
+					img.style.visibility = "hidden";
 			}
 		}
 
@@ -125,6 +139,7 @@ var Mega = {
 			document.getElementById("counter_up").style.visibility = "visible";
 
 		document.getElementById("etank_count").innerHTML = this.etanks;
+		this.set_result();
 	},
 
 	run : function() {
@@ -146,9 +161,7 @@ var Mega = {
 			Mega.adjust_etank_count(false);
 		};
 
-		document.getElementById("btn_generate").onclick = function() {
-			Mega.set_result();
-		};
+		Mega.set_result();
 	}
 }
 
