@@ -167,4 +167,11 @@ var Mega = {
 
 window.onload = function() {
 	Mega.run();
+
+	var bosses = Object.keys(Mega.bosses),
+		i;
+
+	for(i = 0; i < bosses.length; ++i)
+		new Image().src = "images/" + bosses[i] + "_defeated.png";
+
 }
