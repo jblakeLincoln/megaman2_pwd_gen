@@ -1,3 +1,7 @@
+@font-face {
+	font-family: "Emulogic";
+	src: url("emulogic.ttf") format("truetype");
+}
 #page {
 	width: 600px;
 	margin-left: auto;
@@ -6,6 +10,18 @@
 
 	color: white;
 	background-color: #0050F1;
+	font-family: "Emulogic";
+	font-size: 8pt;
+	font-smooth: never;
+	-webkit-font-smoothing : none;
+
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+	supported by Chrome and Opera */
 }
 
 img {
@@ -70,6 +86,35 @@ table {
 .button {
 	cursor: pointer;
 	font-weight: bold;
+	margin: 12px 0;
 }
 
+#etank_container {
+	display: inline-block;
+	font-size: 0;
+}
 
+#etank_count {
+	font-size: 24px;
+	margin-left: 6px;
+	margin-right: 12px;
+}
+
+#etank_container * {
+	display: inline;
+	vertical-align: middle;
+}
+
+#etank_controls {
+	display: inline-block;
+}
+
+#etank_controls * {
+	display: block;
+	height: 10px;
+	padding: 4px 0;
+}
+
+#counter_down {
+	visibility: hidden;
+}

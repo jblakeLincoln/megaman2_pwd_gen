@@ -86,8 +86,6 @@ var Mega = {
 			cells = table.getElementsByTagName("td");
 		}
 
-		console.log(cells);
-
 		for(i = 0; i < 5 ; ++i) {
 			for(j = 0; j < 5; ++j) {
 				var cell = cells[i * 5 + j];
@@ -106,10 +104,33 @@ var Mega = {
 		document.getElementById("results").style.display = "inline-block";
 	},
 
+	adjust_etank_count : function(increment) {
+		if(increment === true)
+			++this.etanks;
+		else
+			--this.etanks;
+
+		if(this.etanks <= 0) {
+			this.etanks = 0;
+			document.getElementById("counter_down").style.visibility = "hidden";
+		}
+		else
+			document.getElementById("counter_down").style.visibility = "visible";
+
+		if(this.etanks >= 4) {
+			this.etanks = 4;
+			document.getElementById("counter_up").style.visibility = "hidden";
+		}
+		else
+			document.getElementById("counter_up").style.visibility = "visible";
+
+		document.getElementById("etank_count").innerHTML = this.etanks;
+	},
+
 	run : function() {
 		var table = document.getElementById("bosses"),
-				cells = table.getElementsByTagName("td"),
-				i;
+			cells = table.getElementsByTagName("td"),
+			i;
 
 		for(i = 0; i < cells.length; ++i) {
 			cells[i].onclick = function() {
@@ -117,6 +138,13 @@ var Mega = {
 					Mega.set_boss_state(this);
 			};
 		}
+
+		document.getElementById("counter_up").onclick = function() {
+			Mega.adjust_etank_count(true);
+		};
+		document.getElementById("counter_down").onclick = function() {
+			Mega.adjust_etank_count(false);
+		};
 
 		document.getElementById("btn_generate").onclick = function() {
 			Mega.set_result();
