@@ -36,7 +36,7 @@ var Mega = {
 		row = parseInt(index / 5);
 		col = parseInt(index % 5);
 
-		if(row == 5)
+		if(row === 5)
 			row = 1;
 
 		this.result[row][col] = true;
@@ -165,6 +165,48 @@ var Mega = {
 	}
 }
 
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+if (!Object.keys) {
+  Object.keys = (function() {
+    'use strict';
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+        dontEnums = [
+          'toString',
+          'toLocaleString',
+          'valueOf',
+          'hasOwnProperty',
+          'isPrototypeOf',
+          'propertyIsEnumerable',
+          'constructor'
+        ],
+        dontEnumsLength = dontEnums.length;
+
+    return function(obj) {
+      if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+        throw new TypeError('Object.keys called on non-object');
+      }
+
+      var result = [], prop, i;
+
+      for (prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) {
+          result.push(prop);
+        }
+      }
+
+      if (hasDontEnumBug) {
+        for (i = 0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) {
+            result.push(dontEnums[i]);
+          }
+        }
+      }
+      return result;
+    };
+  }());
+}
+
 window.onload = function() {
 	Mega.run();
 
@@ -173,5 +215,4 @@ window.onload = function() {
 
 	for(i = 0; i < bosses.length; ++i)
 		new Image().src = "images/" + bosses[i] + "_defeated.png";
-
 }

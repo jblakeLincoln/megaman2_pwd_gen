@@ -9,6 +9,10 @@ body {
 	cursor: default;
 }
 
+noscript {
+	font-size: 28px;
+}
+
 #page {
 	position: absolute;
 	top: 0;
@@ -24,7 +28,7 @@ body {
 
 	color: white;
 	background-color: #0050F1;
-	font-family: "Emulogic";
+	font-family: "Emulogic", monospace;
 	font-size: 8px;
 
 	font-smooth: never;
@@ -90,6 +94,7 @@ table {
 	max-width: 60%;
 	padding-top: 3px;
 	padding-left: 3px;
+
 	border-right: 3px solid #4BA0FF;
 	border-bottom: 3px solid #4BA0FF;
 	-moz-box-shadow: inset 0 3px #A6E5FF;
